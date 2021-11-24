@@ -5,6 +5,7 @@ public class Chair {
         while (chairFree == 0)
             wait();
 
+
         System.out.println("Philosopher " + i + " takes a chair ");
         chairFree--;
 
