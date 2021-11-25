@@ -1,25 +1,19 @@
 public class Cutlery {
-    private int id;
-    private boolean free = true;
+    public final int id;
+    public int free = -1;
 
     public Cutlery(int id) {
         this.id = id;
     }
 
-    public synchronized void takeCutlery(int i, Cutlery first) throws InterruptedException {
-        while (!free) {
-            if (first != null)
-                first.dropCutlery(i);
-            wait();
-        }
+    public void takeCutlery(int i) {
         System.out.println("Philosopher " + i + " takes a cutlery " + id);
-        free = false;
+        free = i;
     }
 
-    public synchronized void dropCutlery(int i) {
-        free = true;
+    public void dropCutlery(int i) {
         System.out.println("Philosopher " + i + " drops the cutlery " + id);
-        notify();
+        free = -1;
     }
 
 
